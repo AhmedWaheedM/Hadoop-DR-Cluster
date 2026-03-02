@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     openssh-server \
     openssh-client \
     wget vim net-tools \
+    netcat-openbsd \
     && rm -rf /var/lib/apt/lists/*
 
 # Set environment variables
