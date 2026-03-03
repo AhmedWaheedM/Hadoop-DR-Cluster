@@ -37,12 +37,12 @@ for i in {1..15}; do
 done
 
 # ── Start JournalNode on node02 ───────────────────────────────────────────────
-log "Creating JournalNode directory"
-mkdir -p $JOURNAL_DIR
-log "Starting JournalNode..."
-$HADOOP_HOME/bin/hdfs --daemon start journalnode
-sleep 3
-log "JournalNode started"
+# log "Creating JournalNode directory"
+# mkdir -p $JOURNAL_DIR
+# log "Starting JournalNode..."
+# $HADOOP_HOME/bin/hdfs --daemon start journalnode
+# sleep 3
+# log "JournalNode started"
 
 # ── Bootstrap Standby NameNode ────────────────────────────────────────────────
 mkdir -p $NAMENODE_DIR
@@ -73,12 +73,12 @@ $HADOOP_HOME/bin/yarn --daemon start resourcemanager
 log "ResourceManager started"
 
 # ── Summary ───────────────────────────────────────────────────────────────────
-echo ""
-log "============================================"
-log "node02 services started. Running processes:"
-jps
-log "============================================"
-log "NameNode HA state:"
-$HADOOP_HOME/bin/hdfs haadmin -getServiceState nn2 2>/dev/null || log "(haadmin not ready yet)"
-log "YARN RM HA state:"
-$HADOOP_HOME/bin/yarn rmadmin -getServiceState rm2 2>/dev/null || log "(rmadmin not ready yet)"
+# echo ""
+# log "============================================"
+# log "node02 services started. Running processes:"
+# jps
+# log "============================================"
+# log "NameNode HA state:"
+# $HADOOP_HOME/bin/hdfs haadmin -getServiceState nn2 2>/dev/null || log "(haadmin not ready yet)"
+# log "YARN RM HA state:"
+# $HADOOP_HOME/bin/yarn rmadmin -getServiceState rm2 2>/dev/null || log "(rmadmin not ready yet)"

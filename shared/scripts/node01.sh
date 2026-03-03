@@ -19,7 +19,7 @@ log() { echo "[$(date '+%H:%M:%S')] [node01] $*"; }
 
 check_journalnodes() {
   for node in node01 node02 node03; do
-    nc -z $node 8485 2>/dev/null || { log "❌ JournalNode not reachable on $node:8485"; return 1; }
+    nc -z $node 8485 2>/dev/null || { log " JournalNode not reachable on $node:8485"; return 1; }
   done
   return 0
 }
@@ -94,12 +94,12 @@ $HADOOP_HOME/bin/yarn --daemon start resourcemanager
 log "ResourceManager started"
 
 # ── Summary logging
-echo ""
-log "============================================"
-log "node01 services started. Running processes:"
-jps
-log "============================================"
-log "NameNode HA state:"
-$HADOOP_HOME/bin/hdfs haadmin -getServiceState nn1 2>/dev/null || log "(haadmin not ready yet)"
-log "YARN RM HA state:"
-$HADOOP_HOME/bin/yarn rmadmin -getServiceState rm1 2>/dev/null || log "(rmadmin not ready yet)"
+# echo ""
+# log "============================================"
+# log "node01 services started. Running processes:"
+# jps
+# log "============================================"
+# log "NameNode HA state:"
+# $HADOOP_HOME/bin/hdfs haadmin -getServiceState nn1 2>/dev/null || log "(haadmin not ready yet)"
+# log "YARN RM HA state:"
+# $HADOOP_HOME/bin/yarn rmadmin -getServiceState rm1 2>/dev/null || log "(rmadmin not ready yet)"
