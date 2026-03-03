@@ -31,11 +31,11 @@ mkdir -p $DATANODE_DIR
 # ── Wait for active NameNode to be reachable 
 log "Waiting for an active NameNode to be reachable..."
 for i in {1..15}; do
-  check_namenode && { log "✅ NameNode is reachable"; break; }
+  check_namenode && { log "NameNode is reachable"; break; }
   log "Waiting for NameNode... attempt $i/15"
   sleep 5
   [[ $i -eq 15 ]] && {
-    log "⚠️  NameNode not reachable yet — starting DataNode anyway (it will retry)"
+    log "NameNode not reachable yet — starting DataNode anyway (it will retry)"
   }
 done
 
@@ -43,13 +43,13 @@ done
 log "Starting DataNode..."
 $HADOOP_HOME/bin/hdfs --daemon start datanode
 sleep 2
-log "✅ DataNode started"
+log "DataNode started"
 
 # ── Start NodeManager 
 log "Starting NodeManager..."
 $HADOOP_HOME/bin/yarn --daemon start nodemanager
 sleep 2
-log "✅ NodeManager started"
+log "NodeManager started"
 
 # ── Summary logging
 echo ""
