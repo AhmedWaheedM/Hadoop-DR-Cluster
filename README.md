@@ -4,6 +4,8 @@
 > This repository houses the **Disaster Recovery Vault** for our multi-datacenter Hadoop architecture. It is designed to act as a cold-standby mirror cluster, receiving automated, cross-cluster data and metadata replication over a Tailscale VPN.
 > 
 > 🔗 **Primary Active Cluster Repository:** [codsalah/Hadoop-HA-DR-Cluster](https://github.com/codsalah/Hadoop-HA-DR-Cluster)
+> 
+![HadoopArchitecture](Imgs/Architecture.png)
 
 ---
 
