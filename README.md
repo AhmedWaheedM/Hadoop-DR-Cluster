@@ -1,7 +1,22 @@
-# Hadoop High Availability Cluster with Disaster Recovery
+# Hadoop Disaster Recovery (DR) Vault
 
-> A fully containerized, production-grade Hadoop HA pseudo-cluster with an integrated Disaster Recovery cluster — built on Docker, HDFS, YARN, and ZooKeeper.
-![HadoopArchitecture](Imgs/Architecture.png)
+> Architecture Context
+> This repository houses the **Disaster Recovery Vault** for our multi-datacenter Hadoop architecture. It is designed to act as a cold-standby mirror cluster, receiving automated, cross-cluster data and metadata replication over a Tailscale VPN.
+> 
+> 🔗 **Primary Active Cluster Repository:** [codsalah/Hadoop-HA-DR-Cluster](https://github.com/codsalah/Hadoop-HA-DR-Cluster)
+
+---
+
+## The DR Pipeline Architecture
+
+While the primary cluster handles Active compute and High Availability, this repository focuses on the engineering required to breach Docker network isolation and synchronize two distinct datacenters across the internet.
+
+### Key DR Features Engineered:
+* **Dynamic HA Routing:** The `dr-sync.sh` engine dynamically hunts for the true Active NameNode on both clusters, bypassing ZooKeeper `StandbyException` rejections.
+* **VPN Hostname Resolution:** Bypasses Docker bridge IP isolation during MapReduce DistCp jobs by forcing `-Ddfs.client.use.datanode.hostname=true` for native Tailscale routing.
+* **Host-to-Container SSH Tunneling:** Mounts physical host RSA keys to tunnel `rsync` metadata backups directly into the active NameNode containers via the `--rsync-path` wrapper.
+* **Decoupled Orchestration:** Shifts scheduling logic away from ephemeral Linux containers to persistent Windows Task Scheduler (`sync-trigger.bat`) to guarantee automation survives cluster rebuilds.
+
 ---
 
 ## Table of Contents
